@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head %}<title>Login page</title>{% endblock %}
+
+{% block body %}
+{% if form.errors %}
+<p>Your username and password were not valid.</p>
+{% endif %}
+
+  <section>
+    <form method="post" action=".">
+      {% csrf_token %}
+      <p>
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+      </p>
+      <p>
+        <label for="id_password">Password:</label>
+        {{ form.password }}
+      </p>
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% else %}
+        <input type="hidden" name="next" value="/blog/" />
+      {% endif %}
+      <input type="submit" value="Login" />
+    </form>
+  </section>
+{% endblock %}

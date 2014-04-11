@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<style>
+		div#container {margin-left: 30px; margin-right: 30px;}
+		/*div.post_container { padding-top: 5px;}*/
+		p.content {margin-top: 15px;}
+		div#page-in {margin-left: 30px; margin-right: 30px;}
+		/*.title {color:blue;}*/
+		.nav_item {relative; display: inline; padding-right: 30px; }
+		div#user_id {vertical-align: bottom; float: None;}
+		a.link_normalize, a.link_normalize:hover, a.link_normalize:visited, a.link_normalize:active {color: black; text-decoration: none;}
+		.msg_success {font-size: 14px; font-weight: bold; color: green;}
+		.msg_error {font-size: 14px; font-weight: bold; color: red;}
+	</style>
+	 <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    {% block head %}{% endblock %}
+	
+	<div id="container">
+    <div class="row" id="page">
+	 	<div class="col-sm-8"><h1><a href="{% url 'blog.views.blog_page' %}" class="link_normalize">MyBlog</a></h1>
+	 	{% if messages %}
+		{% for message in messages %}
+		<div style="margin-left: 2px" class="msg_{{ message.tags }}">{{ message }}</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+    	<div class="col-m-3 text-right td-bottom"><br>
+		{% if user.is_authenticated %}
+		<h5>Logged in: {{user.username}}</h5>
+		<a href="{% url 'blog.views.create_post_page' %}">[ New Post ]</a> 
+		[ Manage Posts ] 
+		<a href="{% url 'blog.views.log_out' %}">[ Logout ]</a>
+    	{% else %}
+		<a href="{% url 'django.contrib.auth.views.login' %}">[ Login ]</a>
+    {% endif %}
+	 </div>
+	 </div>
+	 <hr>
+  </head>
+	<div id="page-in">
+  <body>
+    {% block body %}{% endblock %}
+  </body>
+	</div>
+</div>
+</html>

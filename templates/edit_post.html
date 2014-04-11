@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block head %}<title>MyBlog - New Post</title>{% endblock %}
+{% block body %}
+
+
+{% if form.errors %}
+Please fill out all fields.
+{% endif %}
+<form method="post">
+{% csrf_token %}
+<table>
+{{ form }}
+</table>
+<button>Update Post</button>
+</form>
+
+{% endblock %} 

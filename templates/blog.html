@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}<title>MyBlog</title>{% endblock %}
+
+{% block body %}
+
+{% if page > 1 %}
+<div class="nav_item">
+	<a href="{% url 'blog.views.blog_page' page|add:'-1' %}"><< Previous</a>
+</div> {% endif %}
+<div class="nav_item">Page {{page}}</div>
+{% if not last_page %}
+<div class="nav_item">
+	<a href="{% url 'blog.views.blog_page' page|add:"1" %}">Next >> </a>
+</div>
+{% endif %}
+
+
+{% for post in posts %}
+<div class="post_container">
+	<h3 class="title">{{ post.title }}</h3> 
+	<p class="content">
+		{{ post.content }}<br><br>
+		{{ post.published_date|date:"D M d, Y" }} 
+		<i>posted by {% if post.author %} {{post.author}}</i>  {% endif %}
+	</p>
+</div>
+<hr>
+{% endfor %}
+
+{% if page > 1 %}
+<div class="nav_item">
+	<a href="{% url 'blog.views.blog_page' page|add:'-1' %}"><< Previous</a>
+</div> {% endif %}
+<div class="nav_item">Page {{page}}</div>
+{% if not last_page %}
+<div class="nav_item">
+	<a href="{% url 'blog.views.blog_page' page|add:"1" %}">Next >> </a>
+</div>
+{% endif %}
+
+{% endblock %} 

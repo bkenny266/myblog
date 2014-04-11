@@ -1,0 +1,10 @@
+Switch datefield to datetimefield
+Hook edit post functionality to the interface via Manage posts
+Work on delete post functionality
+Much better unit testing
+Better decoupling of the app from the project - urls are mostly good
+  except for login/logout which can be addressed by reexamining
+  the User/Author relationship. Templates and static files are not
+  at all decoupled from project, currently.
+Not super happy with how the blog posts look at the moment,
+  "create/edit post" template forms need to be cleaned up.
